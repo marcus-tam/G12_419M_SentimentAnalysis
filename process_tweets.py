@@ -21,7 +21,7 @@ def bag_of_words(filepath_data,filepath_keywords):
     while str!="":
         keywords_vector_temp=[]
         for i in range (0,26):
-            keywords_vector_temp.append(numpy.zeros(len(keywords_vector[i])))
+            keywords_vector_temp.append(numpy.zeros(len(keywords_vector[i])))      
         line_splited=str.split("	")
         word_str=line_splited[len(line_splited)-2]
         word_list=word_str.split(" ")
@@ -41,18 +41,19 @@ def bag_of_words(filepath_data,filepath_keywords):
         for vector in keywords_vector_temp:
             for value in vector:
                 temp.append(value)
-                # result=",".join(i+"" for i in temp) 
+                # result=",".join(i+"" for i in temp)      
+        temp.append(line_splited[1][0:10])
         keywords_vectors.append(temp)
         
         # print(temp)
         str=file_data.readline()
         count+=1
-        if count==50:
+        if count==40:
             break
     file_data.close()
 
-    numpy.savetxt('new_test2.csv', keywords_vectors, delimiter = ',')
-
+    # numpy.savetxt('new_test2.csv', keywords_vectors, delimiter = ',')
+    # print(keywords_vectors)
     return keywords_vectors
 
 if __name__=='__main__':
