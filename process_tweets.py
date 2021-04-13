@@ -19,6 +19,7 @@ def bag_of_words(filepath_data,filepath_keywords):
     str=file_data.readline()
     count=1
     while str!="":
+        ifdelete=True
         keywords_vector_temp=[]
         for i in range (0,26):
             keywords_vector_temp.append(numpy.zeros(len(keywords_vector[i])))      
@@ -35,8 +36,14 @@ def bag_of_words(filepath_data,filepath_keywords):
                 continue
             for i in range(0,len(frequent_keywords[index])):
                 if frequent_keywords[index][i]==word:
+                    ifdelete=False
                     keywords_vector_temp[index][i]+=1
                     break
+        if ifdelete:
+            # print(count)
+            str=file_data.readline()
+            count+=1
+            continue
         temp=[]
         for vector in keywords_vector_temp:
             for value in vector:
@@ -48,8 +55,8 @@ def bag_of_words(filepath_data,filepath_keywords):
         # print(temp)
         str=file_data.readline()
         count+=1
-        if count==40:
-            break
+        # if count>=10000:
+        #     break
     file_data.close()
 
     # numpy.savetxt('new_test2.csv', keywords_vectors, delimiter = ',')
@@ -58,6 +65,7 @@ def bag_of_words(filepath_data,filepath_keywords):
 
 if __name__=='__main__':
     keywords_vectors=bag_of_words("PFE_new.txt","PFE_frequent.txt")
+    print(len(keywords_vectors))
     
 
     
