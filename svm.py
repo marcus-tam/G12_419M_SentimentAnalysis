@@ -30,25 +30,25 @@ def svm(start,company,filename,filename_frequent,filename2):
     print("size of feature",length)
     stock_prediction=get_stock_price(company,start)
     d=date_difference(start,keywords_vectors[0][length])
-    index=date_difference(stock_prediction[d][0],keywords_vectors[0][length])
+    # index=date_difference(stock_prediction[d][0],keywords_vectors[0][length])
     # print(type(index))
     train_X=[]
     train_y=[]
     for i in range(0,len(keywords_vectors)):
         train_X.append(keywords_vectors[i][0:length])
-        d=date_difference(start,keywords_vectors[i][length])+index+1
+        d=date_difference(start,keywords_vectors[i][length])+1
         # if date_difference(stock_prediction[d][0],keywords_vectors[i][length])==0:
         #     print(date_difference(stock_prediction[d][0],keywords_vectors[i][length]))
-        #     print(stock_prediction[d][0],keywords_vectors[i][length])
+        # print(stock_prediction[d][0],keywords_vectors[i][length])
         #     print("date wrong")
         #     return
         temp=[]
         count0=0
         count1=0
-        for i in range (0,7):
-            if stock_prediction[d][2]==1:
+        for a in range (0,7):
+            if stock_prediction[d+a][2]==1:
                 count1+=1
-            elif stock_prediction[d][2]==0:
+            elif stock_prediction[d+a][2]==0:
                 count0+=1
         if count1>count0:
             # print(1)
@@ -65,25 +65,25 @@ def svm(start,company,filename,filename_frequent,filename2):
     keywords_vectors=bag_of_words(filename2,filename_frequent)
     length=len(keywords_vectors[0])-1
     d=date_difference(start,keywords_vectors[0][length])
-    index=date_difference(stock_prediction[d][0],keywords_vectors[0][length])
+    # index=date_difference(stock_prediction[d][0],keywords_vectors[0][length])
     # print(type(index))
     test_X=[]
     test_y=[]
     for i in range(0,len(keywords_vectors)):
         test_X.append(keywords_vectors[i][0:length])
-        d=date_difference(start,keywords_vectors[i][length])+index+1
+        d=date_difference(start,keywords_vectors[i][length])+1
         # if date_difference(stock_prediction[d][0],keywords_vectors[i][length])==0:
         #     print(date_difference(stock_prediction[d][0],keywords_vectors[i][length]))
-        #     print(stock_prediction[d][0],keywords_vectors[i][length])
+        # print(stock_prediction[d][0],keywords_vectors[i][length])
         #     print("date wrong")
         #     return
         temp=[]
         count0=0
         count1=0
-        for i in range (0,7):
-            if stock_prediction[d][2]==1:
+        for a in range (0,7):
+            if stock_prediction[d+a][2]==1:
                 count1+=1
-            elif stock_prediction[d][2]==0:
+            elif stock_prediction[d+a][2]==0:
                 count0+=1
         if count1>count0:
             # print(1)
@@ -96,8 +96,8 @@ def svm(start,company,filename,filename_frequent,filename2):
         test_y.append(stock_prediction[d][2])
     test_X=np.array(test_X)
     test_y=np.array(test_y)
-    print("Train data size is",train_X.shape)
-    print("Test data size is",test_X.shape)
+    # print("Train data size is",train_X.shape)
+    # print("Test data size is",test_X.shape)
     
 
     train_X=scale(train_X)

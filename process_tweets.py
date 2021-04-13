@@ -14,7 +14,12 @@ def bag_of_words(filepath_data,filepath_keywords):
             frequent_keywords[i].append(keyword)
             keywords_vector[i].append(0)
     file_keywords.close()
-
+    indent=0
+    if filepath_data=="trainAAPL_new.txt":
+        indent=5
+    elif filepath_data=="trainAMZN_new.txt" or filepath_data=="trainPFE_new.txt":
+        indent=2
+    
     file_data = open(filepath_data,"r")  
     str=file_data.readline()
     count=1
@@ -28,11 +33,11 @@ def bag_of_words(filepath_data,filepath_keywords):
         word_list=word_str.split(" ")
         for word in word_list:
             if len(word)==0:
-                print("word is",word)
+                # print("word is",word)
                 continue
             index=ord(word[0])-97
             if index<0 or index>25:
-                print(word,index)
+                # print(word,index)
                 continue
             for i in range(0,len(frequent_keywords[index])):
                 if frequent_keywords[index][i]==word:
@@ -55,6 +60,8 @@ def bag_of_words(filepath_data,filepath_keywords):
         # print(temp)
         str=file_data.readline()
         count+=1
+        if indent!=0:
+            for i in range(0,indent):
         # if count>=10000:
         #     break
     file_data.close()
