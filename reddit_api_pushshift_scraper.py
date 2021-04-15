@@ -54,7 +54,7 @@ def download(filename, payload, url, end, limit):
             body_of_text = special_char_removal(body_of_text)
             body_of_text = str(stopwords_removal(body_of_text))
 
-            f.write(str(object["id"])+" \t")
+            f.write(str(object["id"])+"\t")
             f.write(datetime.fromtimestamp(object['created_utc']).strftime("%Y-%m-%d")+"\t")
             f.write(body_of_text)
             f.write("\n")

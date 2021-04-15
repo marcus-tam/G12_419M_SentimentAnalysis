@@ -61,10 +61,10 @@ def bag_of_words(filepath_data,filepath_keywords):
         str=file_data.readline()
         count+=1
         if indent!=0:
-            for i in range(0,indent):
-        # if count>=10000:
-        #     break
-    file_data.close()
+            # for i in range(0,indent):
+            # if count>=10000:
+            #     break
+            file_data.close()
 
     # numpy.savetxt('new_test2.csv', keywords_vectors, delimiter = ',')
     # print(keywords_vectors)

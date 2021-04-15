@@ -194,7 +194,7 @@ def get_frequent_keyword(filepath,filepath_new):
     
 
 if __name__ == '__main__':
-    # process_original_data("2020_12_08To2021_04_03.txt","PFE_new.txt") #this will omit all Bullish and Bearish words
+    # process_original_data("trainAAPL.txt","trainAAPL_new.txt") #this will omit all Bullish and Bearish words
     # get_file_dictionary("PFE_new.txt","PFE_keyword_dict.txt") #this will genarate all keyword (it is not have to run)
-    get_frequent_keyword("test2.txt","PFE_frequent.txt") #this will genarate frequent keywords 
-    # syns_process("PFE_new.txt")
+    # get_frequent_keyword("trainAAPL_new.txt","AAPL_frequent.txt") #this will genarate frequent keywords 
+    syns_process("PFE_new.txt", "trainAAPL_new.txt")

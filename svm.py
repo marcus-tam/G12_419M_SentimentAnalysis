@@ -117,7 +117,7 @@ def svm(start,company,filename,filename_frequent,filename2):
     # y_pred = rbf_svm.predict(test_X)
     # acc = metrics.accuracy_score(test_y, y_pred)
     print("The accracy is",acc)
-
+    return rbf_svm, test_X, test_y
     # plt.plot(params, accs)
     # plt.axis([0, 1000, 0.5, 1])
     # plt.show()
