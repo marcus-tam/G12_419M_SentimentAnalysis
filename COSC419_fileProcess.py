@@ -7,10 +7,10 @@ def process_original_data(filepath_old,filepath_new):
     count=1
     str=file_old.readline()
     while str!="":
-        line_splited=str.split("	")
+        line_splited=str.split("\t")
         if line_splited[len(line_splited)-1]!="\n":
             line_splited[len(line_splited)-1]="\n"
-        result="	".join(i for i in line_splited)
+        result="\t".join(i for i in line_splited)
         content+=result
         try:
             str=file_old.readline()

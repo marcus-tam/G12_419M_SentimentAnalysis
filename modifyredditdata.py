@@ -2,7 +2,7 @@ def filemod(filename):
     f = open(filename, 'r')
     w = open("train_testReddit/"+filename, 'w')
     for line in f.readlines():
-        w.write(line[:7] + line[(8):])
+        w.write(line[:-1] + "\t" + line[-1:])
     f.close()
     w.close()
 
