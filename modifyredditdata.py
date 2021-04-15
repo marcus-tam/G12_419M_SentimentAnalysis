@@ -20,8 +20,12 @@ def pog(filename):
     print(temp)
     return temp
 
-pol = pol('trainRedditAAPL.txt')
-pog = pog('trainRedditAAPL.txt')
+# pol = pol('trainRedditAAPL.txt')
+# pog = pog('trainRedditAAPL.txt')
 
-if(pol == pog):
-    print("true")
+# if(pol == pog):
+#     print("true")
+
+filenames = {'testRedditAAPL.txt', 'testRedditBRK.B.txt', 'testRedditMCD.txt', 'testRedditPFE.txt', 'trainRedditAAPL.txt', 'trainRedditBRK.B.txt', 'trainRedditMCD.txt', 'trainRedditPFE.txt'}
+for filename in filenames:
+    filemod(filename)
