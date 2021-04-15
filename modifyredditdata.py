@@ -1,6 +1,6 @@
 def filemod(filename):
     f = open(filename, 'r')
-    w = open(filename, 'w')
+    w = open("train_testReddit/"+filename, 'w')
     for line in f.readlines():
         w.write(line[:7] + line[(8):])
     f.close()
