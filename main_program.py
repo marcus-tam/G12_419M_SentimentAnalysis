@@ -1,11 +1,9 @@
-from COSC419_fileProcess import process_original_data,syns_process,get_frequent_keyword
-from svm import svm
-from sklearn.metrics import plot_confusion_matrix
+from COSC419_fileProcess import process_original_data, syns_process, get_frequent_keyword
+# from svm import svm
+# from sklearn.metrics import plot_confusion_matrix
 
-
-
-# process_original_data("trainMCD.txt","trainMCD_new.txt")
-# process_original_data("testMCD.txt","testMCD_new.txt")
+# process_original_data("trainMCD.txt", "trainMCD_new.txt")
+# process_original_data("testMCD.txt", "testMCD_new.txt")
 # syns_process("trainMCD_new.txt","trainMCD_new.txt")
 # get_frequent_keyword("trainMCD_new.txt" ,"MCD_frequent.txt")
 # svm, test_X, test_y = svm("2020-12-09","MCD","trainMCD_new.txt","MCD_frequent.txt","testMCD_new.txt")
@@ -33,22 +31,21 @@ from sklearn.metrics import plot_confusion_matrix
 # get_frequent_keyword("trainRedditPFE_new.txt" ,"RedditPFE_frequent.txt")
 # svm("2020-12-09","MCD","trainRedditMCD_new.txt","RedditMCD_frequent.txt","testRedditMCD_new.txt")
 
-# AAPL
-process_original_data("trainRedditAAPL.txt","trainRedditAAPL_new.txt")
-process_original_data("testRedditAAPL.txt","testRedditAAPL_new.txt")
-syns_process("testRedditAAPL_new.txt","testRedditAAPL_new.txt")
-get_frequent_keyword("trainRedditAAPL_new.txt" ,"RedditAAPL_frequent.txt")
+# # AAPL
+# process_original_data("trainRedditAAPL.txt","trainRedditAAPL_new.txt")
+# process_original_data("testRedditAAPL.txt","testRedditAAPL_new.txt")
+# syns_process("testRedditAAPL_new.txt","testRedditAAPL_new.txt")
+# get_frequent_keyword("trainRedditAAPL_new.txt" ,"RedditAAPL_frequent.txt")
 # svm("2020-12-09","MCD","trainRedditMCD_new.txt","RedditMCD_frequent.txt","testRedditMCD_new.txt")
 
 # process_original_data("trainBRKB.txt","trainBRKB_new.txt")
-# process_original_data("trainPFE.txt","trainPFE_new.txt")
+process_original_data("trainPFE.txt", "trainPFE_new.txt")
 # process_original_data("trainAMZN.txt","trainAMZN_new.txt")
 # process_original_data("testAAPL.txt","testAAPL_new.txt")
 # process_original_data("testBRKB.txt","testBRKB_new.txt")
-# process_original_data("testPFE.txt","testPFE_new.txt")
+process_original_data("testPFE.txt", "testPFE_new.txt")
 # process_original_data("testAMZ N.txt","testAMZN_new.txt")
 # process_original_data("testAMZN.txt","testAMZN_new.txt")
-
 
 # pcm = plot_confusion_matrix(svm, test_X, test_y, values_format = 'd', display_labels=['Bullish', 'Bearish'])
 # print(pcm.confusion_matrix)
@@ -72,30 +69,29 @@ get_frequent_keyword("trainRedditAAPL_new.txt" ,"RedditAAPL_frequent.txt")
 # print (file_contents)
 # f.close()
 
+
 def wap(line_old):
     temp = line_old.split("\t")
     print(temp)
 
+
 # f = open('trainRedditMCD.txt', 'r')
 # f.readline()
 # wap(f.readline())
-# # print(f.readline()) 
+# # print(f.readline())
 # # print(f.readline())
 # f.close()
 
 # f = open('trainMCD.txt', 'r')
 # f.readline()
 # wap(f.readline())
-# # print(f.readline()) 
+# # print(f.readline())
 # # print(f.readline())
 # f.close()
-
-
 
 # syns_process("trainPFE_new.txt","trainPFE_new.txt")
 # get_frequent_keyword("trainPFE_new.txt" ,"PFE_frequent.txt")
 # svm("2020-12-09","PFE","trainPFE_new.txt","PFE_frequent.txt","testPFE_new.txt")
-
 
 # process_original_data("testAMZN.txt","testAMZN_new.txt")
 # process_original_data("trainAMZN.txt","trainAMZN_new.txt")
