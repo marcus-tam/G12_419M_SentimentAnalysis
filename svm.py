@@ -20,7 +20,8 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import matplotlib.table as table
 # tells matplotlib to embed plots within the notebook
-from process_tweets import bag_of_words
+from sklearn.decomposition import PCA
+from process_tweets import bag_of_words,convertToID
 from get_stock_price import get_stock_price
 from helper import date_difference
 def svm(start,company,filename,filename_frequent,filename2):
@@ -35,8 +36,12 @@ def svm(start,company,filename,filename_frequent,filename2):
     train_X=[]
     train_y=[]
     for i in range(0,len(keywords_vectors)):
-        train_X.append(keywords_vectors[i][0:length])
+        
         d=date_difference(start,keywords_vectors[i][length])+1
+        if d==0:
+            # print("error")
+            continue
+        train_X.append(keywords_vectors[i][0:length])
         # if date_difference(stock_prediction[d][0],keywords_vectors[i][length])==0:
         #     print(date_difference(stock_prediction[d][0],keywords_vectors[i][length]))
         # print(stock_prediction[d][0],keywords_vectors[i][length])
@@ -64,14 +69,17 @@ def svm(start,company,filename,filename_frequent,filename2):
 
     keywords_vectors=bag_of_words(filename2,filename_frequent)
     length=len(keywords_vectors[0])-1
-    d=date_difference(start,keywords_vectors[0][length])
     # index=date_difference(stock_prediction[d][0],keywords_vectors[0][length])
     # print(type(index))
     test_X=[]
     test_y=[]
     for i in range(0,len(keywords_vectors)):
-        test_X.append(keywords_vectors[i][0:length])
+        
         d=date_difference(start,keywords_vectors[i][length])+1
+        if d==0:
+            # print("error")
+            continue
+        test_X.append(keywords_vectors[i][0:length])
         # if date_difference(stock_prediction[d][0],keywords_vectors[i][length])==0:
         #     print(date_difference(stock_prediction[d][0],keywords_vectors[i][length]))
         # print(stock_prediction[d][0],keywords_vectors[i][length])
@@ -98,26 +106,42 @@ def svm(start,company,filename,filename_frequent,filename2):
     test_y=np.array(test_y)
     # print("Train data size is",train_X.shape)
     # print("Test data size is",test_X.shape)
-    
-
     train_X=scale(train_X)
     test_X=scale(test_X)
-    bestacc_linear=0
-    bestC_linear=0
-    accs=np.zeros(100)
-    params=np.zeros(100)
-    bestacc_rbf=0
-    bestC_rbf=0
-    param=110
-    rbf_svm=SVC(kernel='rbf',C=param)
-    rbf_svm.fit(train_X,train_y)
-    predict_y=rbf_svm.predict(test_X)
-    acc = accuracy_score(test_y,predict_y)  
-    # plot_confusion_matrix(rbf_svm, test_X, test_y, values_format = 'd', display_labels=['Spam', 'Not Spam'])
-    # y_pred = rbf_svm.predict(test_X)
-    # acc = metrics.accuracy_score(test_y, y_pred)
-    print("The accracy is",acc)
-    return rbf_svm, test_X, test_y
+    n_s = np.linspace(0.1, 0.4, 8)
+    best_acc=0
+    best_n=0
+    print(train_X.shape)
+    for n in n_s:
+        pca = PCA(n_components=(n))
+        # print("feature reduction parameter:{}".format(n))
+        pca.fit(train_X)
+        
+        train_X_pca = pca.transform(train_X)
+        test_X_pca = pca.transform(test_X)
+        print(train_X_pca.shape)
+        
+        bestacc_linear=0
+        bestC_linear=0
+        accs=np.zeros(100)
+        params=np.zeros(100)
+        bestacc_rbf=0
+        bestC_rbf=0
+        param=110
+        rbf_svm=SVC(kernel='rbf',C=param)
+        rbf_svm.fit(train_X_pca,train_y)
+        predict_y=rbf_svm.predict(test_X_pca)
+        acc = accuracy_score(test_y,predict_y)  
+        # plot_confusion_matrix(rbf_svm, test_X, test_y, values_format = 'd', display_labels=['Spam', 'Not Spam'])
+        # y_pred = rbf_svm.predict(test_X)
+        # acc = metrics.accuracy_score(test_y, y_pred)
+        print("The accracy is",acc)
+        if best_acc<acc:
+            best_acc=acc
+            best_n=n
+    
+    print("best accuracy is",best_acc)
+    print("feature reduction parameter:{}".format(best_n))
     # plt.plot(params, accs)
     # plt.axis([0, 1000, 0.5, 1])
     # plt.show()
