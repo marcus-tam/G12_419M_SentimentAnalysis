@@ -2,6 +2,19 @@ from COSC419_fileProcess import process_original_data, syns_process, get_frequen
 # from svm import svm
 # from sklearn.metrics import plot_confusion_matrix
 
+import pandas as pd
+
+def combinedData(twits_path, red_path, use, symbol):
+    twits = (pd.read_csv(twits_path, sep = "\t", header = None)).drop([3], axis = 1)
+    red = pd.read_csv(red_path, sep = "\t", header = None)
+    combo = twits.append(red)
+    path = use + symbol + "Combination.txt"
+    combo.to_csv(path, sep = "\t", header = None, index = False)
+
+
+# combinedData("testAAPL.txt","testRedditAAPL.txt", "test", "AAPL")
+
+process_original_data('testAAPLCombination.txt', 'testAAPLCombination_new.txt')
 # process_original_data("trainMCD.txt", "trainMCD_new.txt")
 # process_original_data("testMCD.txt", "testMCD_new.txt")
 # syns_process("trainMCD_new.txt","trainMCD_new.txt")
@@ -39,11 +52,11 @@ from COSC419_fileProcess import process_original_data, syns_process, get_frequen
 # svm("2020-12-09","MCD","trainRedditMCD_new.txt","RedditMCD_frequent.txt","testRedditMCD_new.txt")
 
 # process_original_data("trainBRKB.txt","trainBRKB_new.txt")
-process_original_data("trainPFE.txt", "trainPFE_new.txt")
+# process_original_data("trainPFE.txt", "trainPFE_new.txt")
 # process_original_data("trainAMZN.txt","trainAMZN_new.txt")
 # process_original_data("testAAPL.txt","testAAPL_new.txt")
 # process_original_data("testBRKB.txt","testBRKB_new.txt")
-process_original_data("testPFE.txt", "testPFE_new.txt")
+# process_original_data("testPFE.txt", "testPFE_new.txt")
 # process_original_data("testAMZ N.txt","testAMZN_new.txt")
 # process_original_data("testAMZN.txt","testAMZN_new.txt")
 
