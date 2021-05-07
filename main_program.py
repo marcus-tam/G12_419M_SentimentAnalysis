@@ -12,14 +12,14 @@ def combinedData(twits_path, red_path, use, symbol):
     combo.to_csv(path, sep = "\t", header = None, index = False)
 
 
-# combinedData("testAAPL.txt","testRedditAAPL.txt", "test", "AAPL")
+combinedData("trainAAPL.txt","trainRedditAAPL.txt", "train", "AAPL")
 
-process_original_data('testAAPLCombination.txt', 'testAAPLCombination_new.txt')
+process_original_data('trainAAPLCombination.txt', 'trainAAPLCombination_new.txt')
 # process_original_data("trainMCD.txt", "trainMCD_new.txt")
 # process_original_data("testMCD.txt", "testMCD_new.txt")
-# syns_process("trainMCD_new.txt","trainMCD_new.txt")
-# get_frequent_keyword("trainMCD_new.txt" ,"MCD_frequent.txt")
-# svm, test_X, test_y = svm("2020-12-09","MCD","trainMCD_new.txt","MCD_frequent.txt","testMCD_new.txt")
+# syns_process("trainAAPLCombination_new.txt","trainAAPLCombination_new.txt")
+get_frequent_keyword("trainAAPLCombination_new.txt" ,"AAPLCombination_frequent.txt")
+# svm, test_X, test_y = svm("2020-12-09","AAPL","trainAAPLCombination_new.txt","AAPL_frequent.txt","testAAPLCombination_new.txt")
 
 # <--------REDDIT---------REDDIT----------REDDIT----------REDDIT-----------REDDIT----------REDDIT---------REDDIT----------REDDIT---------->
 
