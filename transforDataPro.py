@@ -13,12 +13,9 @@ def dataByDate(CombinedProcessedData, use, symbol):
     df.columns = ['id','date','post']
     df['date'] = pd.to_datetime(df.date.str.slice(0,10), format="%Y-%m-%d")
     uniDates = pd.DataFrame(df['date'].drop_duplicates())
-    l = range(len(uniDates))
-    x = pd.DataFrame(l,columns=['index'])
-    uniDates = uniDates.set_index(x['index'])
     uniDates['date'] = pd.to_datetime(uniDates['date'], format="%Y-%m-%d")
     uniDates.insert(1,'posts',"")
-    for i in l:
+    for i in uniDates.index:
         strConcat = ""
         temp = df.loc[df['date'] == uniDates.loc[i,'date'], "post"]
         for j in temp.index:
