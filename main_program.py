@@ -1,5 +1,5 @@
 from COSC419_fileProcess import process_original_data, syns_process, get_frequent_keyword
-# from svm import svm
+from svm import svm
 # from sklearn.metrics import plot_confusion_matrix
 
 import pandas as pd
@@ -11,15 +11,48 @@ def combinedData(twits_path, red_path, use, symbol):
     path = use + symbol + "Combination.txt"
     combo.to_csv(path, sep = "\t", header = None, index = False)
 
+# # PFE COMBINED
+# combinedData("testPFE.txt","testRedditPFE.txt", "test", "PFE") #Test
+# combinedData("trainPFE.txt","trainRedditPFE.txt", "train", "PFE") #Train
+# process_original_data('testPFECombination.txt', 'testPFECombination_new.txt') #Test
+# process_original_data('trainPFECombination.txt', 'trainPFECombination_new.txt') #Train
+# syns_process("trainPFECombination_new.txt", "trainPFECombination_new.txt") #Train
+# get_frequent_keyword("trainPFECombination_new.txt" ,"PFECombination_frequent.txt") #Train
+# # svm, test_X, test_y = svm("2020-12-09","PFE","trainPFECombination_new.txt","PFECombination_frequent.txt","testPFECombination_new.txt")
 
-combinedData("trainAAPL.txt","trainRedditAAPL.txt", "train", "AAPL")
+# # AAPL COMBINED
+# combinedData("testAAPL.txt","testRedditAAPL.txt", "test", "AAPL") #Test
+# combinedData("trainAAPL.txt","trainRedditAAPL.txt", "train", "AAPL") #Train
+# process_original_data('testAAPLCombination.txt', 'testAAPLCombination_new.txt') #Test
+# process_original_data('trainAAPLCombination.txt', 'trainAAPLCombination_new.txt') #Train
+# syns_process("trainAAPLCombination_new.txt", "trainAAPLCombination_new.txt") #Train
+# get_frequent_keyword("trainAAPLCombination_new.txt" ,"AAPLCombination_frequent.txt") #Train
+# # svm, test_X, test_y = svm("2020-12-09","PFE","trainPFECombination_new.txt","PFECombination_frequent.txt","testPFECombination_new.txt")
 
-process_original_data('trainAAPLCombination.txt', 'trainAAPLCombination_new.txt')
+# # MCD COMBINED
+# combinedData("testMCD.txt","testRedditMCD.txt", "test", "MCD") #Test
+# combinedData("trainMCD.txt","trainRedditMCD.txt", "train", "MCD") #Train
+process_original_data('testMCDCombination.txt', 'testMCDCombination_new.txt') #Test
+# process_original_data('trainMCDCombination.txt', 'trainMCDCombination_new.txt') #Train
+# syns_process("trainMCDCombination_new.txt", "trainMCDCombination_new.txt") #Train
+# get_frequent_keyword("trainMCDCombination_new.txt" ,"MCDCombination_frequent.txt") #Train
+# # svm, test_X, test_y = svm("2020-12-09","PFE","trainPFECombination_new.txt","PFECombination_frequent.txt","testPFECombination_new.txt")
+
+# # BRK.B COMBINED
+# combinedData("testBRK.B.txt","testRedditBRK.B.txt", "test", "BRK.B") #Test
+# combinedData("trainBRK.B.txt","trainRedditBRK.B.txt", "train", "BRK.B") #Train
+# process_original_data('testBRK.BCombination.txt', 'testBRK.BCombination_new.txt') #Test
+# process_original_data('trainBRK.BCombination.txt', 'trainBRK.BCombination_new.txt') #Train
+# syns_process("trainBRK.BCombination_new.txt", "trainBRK.BCombination_new.txt") #Train
+# get_frequent_keyword("trainBRK.BCombination_new.txt" ,"BRK.BCombination_frequent.txt") #Train
+# svm, test_X, test_y = svm("2020-12-09","PFE","trainPFECombination_new.txt","PFECombination_frequent.txt","testPFECombination_new.txt")
+
+
 # process_original_data("trainMCD.txt", "trainMCD_new.txt")
 # process_original_data("testMCD.txt", "testMCD_new.txt")
-# syns_process("trainAAPLCombination_new.txt","trainAAPLCombination_new.txt")
-get_frequent_keyword("trainAAPLCombination_new.txt" ,"AAPLCombination_frequent.txt")
-# svm, test_X, test_y = svm("2020-12-09","AAPL","trainAAPLCombination_new.txt","AAPL_frequent.txt","testAAPLCombination_new.txt")
+# syns_process("trainMCD_new.txt","trainMCD_new.txt")
+# get_frequent_keyword("trainMCD_new.txt" ,"MCD_frequent.txt")
+# svm, test_X, test_y = svm("2020-12-09","MCD","trainMCD_new.txt","MCD_frequent.txt","testMCD_new.txt")
 
 # <--------REDDIT---------REDDIT----------REDDIT----------REDDIT-----------REDDIT----------REDDIT---------REDDIT----------REDDIT---------->
 
