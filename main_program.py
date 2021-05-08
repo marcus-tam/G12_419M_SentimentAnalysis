@@ -5,11 +5,11 @@ from svm import svm
 
 # process_original_data("trainMCD.txt","trainMCD_new.txt")
 # process_original_data("testMCD.txt","testMCD_new.txt")
-# process_original_data("trainAAPL.txt","trainAAPL_new.txt")
+process_original_data("trainAAPL.txt","trainAAPL_new.txt")
 # process_original_data("trainBRKB.txt","trainBRKB_new.txt")
 # process_original_data("trainPFE.txt","trainPFE_new.txt")
 # process_original_data("trainAMZN.txt","trainAMZN_new.txt")
-# process_original_data("testAAPL.txt","testAAPL_new.txt")
+process_original_data("testAAPL.txt","testAAPL_new.txt")
 # process_original_data("testBRKB.txt","testBRKB_new.txt")
 # process_original_data("testPFE.txt","testPFE_new.txt")
 # process_original_data("testAMZN.txt","testAMZN_new.txt")
@@ -18,8 +18,8 @@ from svm import svm
 # get_frequent_keyword("trainMCD_new.txt" ,"MCD_frequent.txt")
 # svm("2020-12-09","MCD","trainMCD_new.txt","MCD_frequent.txt","testMCD_new.txt")
 
-# syns_process("trainAAPL_new.txt","trainAAPL_new.txt")
-# get_frequent_keyword("trainAAPL_new.txt" ,"AAPL_frequent.txt")
+syns_process("trainAAPL_new.txt","trainAAPL_new.txt")
+get_frequent_keyword("trainAAPL_new.txt" ,"AAPL_frequent.txt")
 svm("2020-12-09","AAPL","trainAAPL_new.txt","AAPL_frequent.txt","testAAPL_new.txt")
 
 # syns_process("trainBRKB_new.txt","trainBRKB_new.txt")

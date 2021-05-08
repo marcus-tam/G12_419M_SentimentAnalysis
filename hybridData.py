@@ -8,4 +8,5 @@ def combinedData(twits_path, red_path, use, symbol):
     combo.to_csv(path, sep = "\t", header = None, index = False)
 
 if __name__=='__main__':
-    combinedData("testAAPL.txt","testRedditAAPL.txt", "test", "AAPL")
+    combinedData("testMCD.txt","testRedditMCD.txt", "test", "MCD")
+

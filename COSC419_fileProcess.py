@@ -69,6 +69,7 @@ def get_file_dictionary(filepath,filepath_new):
     file_new.write(content)
     file_new.close()
     print(sum)
+
 def syns_process(filename,file_new):
     keywords=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     content=""
@@ -77,7 +78,7 @@ def syns_process(filename,file_new):
     str=file_old.readline()
     count=1
     while str!="":
-        line_splited=str.split("	")
+        line_splited=str.split("\t")
         word_str=line_splited[len(line_splited)-2]
         word_list=word_str.split(" ")
         for b in range(len(word_list)):
@@ -89,7 +90,7 @@ def syns_process(filename,file_new):
                 for j in range (0,len(syns[i].lemmas())):
                     word_temp=syns[i].lemmas()[j].name()
                     if len(word_temp)==0:
-                        print("the short word is in",word_temp)
+                        print("the short word is in", word_temp)
                         continue
                     try:
                         index=ord(word_temp[0])-97
@@ -144,7 +145,7 @@ def get_frequent_keyword(filepath,filepath_new):
     keywords=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     keywords_count=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     while str!="":
-        line_splited=str.split("	")
+        line_splited=str.split("\t")
         word_str=line_splited[len(line_splited)-2]
         word_list=word_str.split(" ")
         for word in word_list:
@@ -191,10 +192,10 @@ def get_frequent_keyword(filepath,filepath_new):
     print("Get frequent key process done")
     # print(sum)
     # print(sum_frequent)
-    
+
 
 if __name__ == '__main__':
     # process_original_data("2020_12_08To2021_04_03.txt","PFE_new.txt") #this will omit all Bullish and Bearish words
     # get_file_dictionary("PFE_new.txt","PFE_keyword_dict.txt") #this will genarate all keyword (it is not have to run)
-    get_frequent_keyword("test2.txt","PFE_frequent.txt") #this will genarate frequent keywords 
-    # syns_process("PFE_new.txt")
+    # get_frequent_keyword("test2.txt","PFE_frequent.txt") #this will genarate frequent keywords 
+    syns_process("testRedditMCD.txt","REDtestMCDCombination_new.txt")

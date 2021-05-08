@@ -24,6 +24,7 @@ from sklearn.decomposition import PCA
 from process_tweets import bag_of_words,convertToID
 from get_stock_price import get_stock_price
 from helper import date_difference
+
 def svm(start,company,filename,filename_frequent,filename2):
     print("Doing svm prediction for",company)
     keywords_vectors=bag_of_words(filename,filename_frequent)
