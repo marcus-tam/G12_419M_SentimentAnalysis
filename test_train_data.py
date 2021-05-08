@@ -13,11 +13,11 @@ def trainTest(name, cutDateStr, symbol):
     totalSet = df.loc[df['date'] > cutDate, 'tweet']
     lenTrain = round((totalSet.shape[0]) *0.7)
     trainSet = totalSet.tail(lenTrain)
-    trainName = "train"+symbol + ".csv"
+    trainName = "train" + symbol + ".csv"
     trainSet.to_csv(trainName)
     lenTest = round((totalSet.shape[0])*0.3)
     testSet = totalSet.tail(lenTest)
-    testName = "test"+symbol + ".csv"
+    testName = "test" + symbol + ".csv"
     testSet.to_csv(testName)
 
 
