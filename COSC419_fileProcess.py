@@ -1,5 +1,8 @@
 from nltk.corpus import wordnet
 import codecs
+from get_stock_price import get_stock_price
+from helper import date_difference
+# centralize the raw data
 def process_original_data(filepath_old,filepath_new):
     content=""
     # read old file
@@ -14,9 +17,10 @@ def process_original_data(filepath_old,filepath_new):
         content+=result
         try:
             str=file_old.readline()
+        # ignore lines that cannot be read
         except:
             count+=1
-            print (count)
+            # print (count)
             continue
         count+=1
         
@@ -27,7 +31,7 @@ def process_original_data(filepath_old,filepath_new):
     file_new.write(content)
     print("Original file process done")
     file_new.close()
-
+#this function is not used for this case
 def get_file_dictionary(filepath,filepath_new):
     f=open(filepath,"r",encoding="UTF-8", errors="ignore")
     str=f.readline()
@@ -69,6 +73,8 @@ def get_file_dictionary(filepath,filepath_new):
     file_new.write(content)
     file_new.close()
     print(sum)
+
+#replace synomys words
 def syns_process(filename,file_new):
     keywords=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     content=""
@@ -135,7 +141,7 @@ def syns_process(filename,file_new):
     file_new.write(content)
     file_new.close()
     print("Synomys process done")
-
+#store keywords that have high frequency
 def get_frequent_keyword(filepath,filepath_new):
     f=open(filepath,"r")
     str=f.readline()
@@ -177,6 +183,7 @@ def get_frequent_keyword(filepath,filepath_new):
     for i in range (0,26):
         for j in range(0,len(keywords[i])):
             sum+=1
+            # the words shows up lease than 10 times will be droped, if the occurance of the word is too high, we count it as common word and drop it too
             if keywords_count[i][j]<=9999 and keywords_count[i][j]>=10:
                 # print(keywords[i][j])
                 sum_frequent+=1
@@ -192,7 +199,82 @@ def get_frequent_keyword(filepath,filepath_new):
     # print(sum)
     # print(sum_frequent)
     
+def getCombinedData(company,start,oldfile,newfile):
+    ones=[]
+    zeros=[]
+    stock_prediction=get_stock_price(company,start)
+    file_old = open(oldfile,"r")
+    str=file_old.readline()
+    while str!="":   
+        line_splited=str.split("	")
+        word_str=line_splited[len(line_splited)-2]
+        date=line_splited[1][0:10]   
+        d=date_difference(start,date)+1
+        if d==0:
+            continue
+        temp=[]
+        count0=0
+        count1=0
+        print(stock_prediction[d][0],date)
+        for a in range (0,7): 
+            if stock_prediction[d+a][2]==1:
+                count1+=1
+            elif stock_prediction[d+a][2]==0:
+                count0+=1
+        if count1>count0:
+            ones.append(word_str)
+        else:
+            zeros.append(word_str)
+        str=file_old.readline()
+    content=""
+    content+="= = = zero = = =\n"
+    for sentence in zeros:
+        content+=sentence+"\n"
+    content+="= = = one = = =\n"
+    for sentence in ones:
+        content+=sentence+"\n"
+    file_new = open(newfile, "w")
+    file_new.write(content)
+    file_new.close()
 
+def getimdb(company,start,oldfile,newfile):
+    ones=[]
+    zeros=[]
+    stock_prediction=get_stock_price(company,start)
+    file_old = open(oldfile,"r")
+    str=file_old.readline()
+    while str!="":   
+        line_splited=str.split("	")
+        word_str=line_splited[len(line_splited)-2]
+        date=line_splited[1][0:10]   
+        d=date_difference(start,date)+1
+        if d==0:
+            continue
+        temp=[]
+        count0=0
+        count1=0
+        print(stock_prediction[d][0],date)
+        for a in range (0,7): 
+            if stock_prediction[d+a][2]==1:
+                count1+=1
+            elif stock_prediction[d+a][2]==0:
+                count0+=1
+        if count1>count0:
+            ones.append(word_str)
+        else:
+            zeros.append(word_str)
+        str=file_old.readline()
+    content=""
+    for sentence in ones:
+        content+="pos\t"+sentence+"\n"
+    for sentence in zeros:
+        content+="neg\t"+sentence+"\n"
+    
+    file_new = open(newfile, "w")
+    file_new.write(content)
+    file_new.close()
+              
+        
 if __name__ == '__main__':
     # process_original_data("2020_12_08To2021_04_03.txt","PFE_new.txt") #this will omit all Bullish and Bearish words
     # get_file_dictionary("PFE_new.txt","PFE_keyword_dict.txt") #this will genarate all keyword (it is not have to run)
