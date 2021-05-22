@@ -15,7 +15,6 @@ def get_stock_price(stockname,start):
     for i in range (0,len(price_date)):
         temp=[]
         current_data=price_date[i].strftime('%Y-%m-%d')
-        
         if date_difference(pre_date,current_data)>=2:
             six=(price_date[i-1] +datetime.timedelta(days=1)).strftime('%Y-%m-%d')
             temp.append(six)
